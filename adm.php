@@ -2,6 +2,8 @@
 require_once 'app/config/db.php';
 require_once 'app/controller/controller.php';
 
+$usermodel = new usermodel($pdo);
+
 $users = new userController($pdo);
 
 if (isset($_POST['submit'])) {
@@ -72,9 +74,7 @@ if (
     isset($_POST['atualizar_email']) &&
     isset($_POST['atualizar_telefone']) &&
     isset($_POST['atualizar_cpf']) &&
-    isset($_POST['atualizar_senha']) &&
-    isset($_POST['atualizar_adm']) &&
-    isset($_POST['id'])
+    isset($_POST['atualizar_senha'])
 ) {
     $usermodel->atualizaruser(
         $_POST['id'],
@@ -84,30 +84,52 @@ if (
         $_POST['atualizar_telefone'],
         $_POST['atualizar_cpf'],
         $_POST['atualizar_senha'],
-        $_POST['atualizar_adm']
     );
 }
 ?>
 <h2>Atualizar Usuário</h2>
 <form method="post">
     <select name="id">
-        <?php foreach ($users as $user) : ?>
+        <?php foreach ($usuario as $user) : ?>
             <option value="<?php echo $user['id']; ?>">
                 <?php echo $user['nome_c']; ?>
             </option>
         <?php endforeach; ?>
     </select>
     <input type="text" name="atualizar_nome_c" placeholder="Nome">
-    <input type="text" name="atualizar_data_n" placeholder="Data de nascimento">
-    <input type="text" name="atualizar_email" placeholder="Email">
+    <input type="date" name="atualizar_data_n" placeholder="Data de nascimento">
+    <input type="email" name="atualizar_email" placeholder="Email">
     <input type="text" name="atualizar_telefone" placeholder="Telefone">
     <input type="text" name="atualizar_cpf" placeholder="CPF">
     <input type="password" name="atualizar_senha" placeholder="Senha">
-    <input type="text" name="atualizar_adm" placeholder="ADM">
-    <div class="inp"><input><button type="submit">Atualizar</button></input></div>
-    </div>
+    <button type="submit">Atualizar</button>
+    
 </form>
 
 <?php
+
+$usuario=$users->listarusers();
+
 $users->exibirlistausers();
 ?>
+
+<?php
+
+if (isset($_POST['deletar_user_id'])) {
+    $users->deletaruser(
+        $_POST['deletar_user_id']
+    );
+}
+?>
+
+<h2>Deletar Usuário</h2>
+<form method="post">
+        <select name="deletar_user_id">
+            <?php foreach ($usuario as $user): ?>
+                <option value="<?php echo $user['id']; ?>">
+                    <?php echo $user['nome_c']; ?>
+                </option>
+            <?php endforeach; ?>
+</select>
+<button type="submit">excluir</button>
+    </form>

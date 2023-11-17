@@ -15,6 +15,7 @@
             <th>Telefone</th>
             <th>CPF</th>
             <th>Senha</th>
+            <th>Deletar</th>
         </tr>
 
         <?php foreach ($users as $user): ?>
@@ -26,6 +27,7 @@
                 <td><?php echo $user['telefone']; ?></td>
                 <td><?php echo $user['cpf']; ?></td>
                 <td><?php echo $user['senha']; ?></td>
+                <td><a href="deletar.php?id="<?php echo $user['id']; ?>>Deletar</a></td>
             </tr>
 
             <?php endforeach; ?>
