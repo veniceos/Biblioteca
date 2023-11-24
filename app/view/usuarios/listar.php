@@ -27,7 +27,7 @@
                 <td><?php echo $user['telefone']; ?></td>
                 <td><?php echo $user['cpf']; ?></td>
                 <td><?php echo $user['senha']; ?></td>
-                <td><a href="deletar.php?id="<?php echo $user['id']; ?>>Deletar</a></td>
+                <td><a href="view/usuarios/deletar.php?id="<?php echo $user['id']; ?>>Deletar</a></td>
             </tr>
 
             <?php endforeach; ?>

@@ -12,9 +12,9 @@ class userController{
         $this->usermodel = new usermodel($pdo);
     }
 
-    public function criaruser($nome_c, $data_n, $email, $telefone, $cpf, $senha)
+    public function criaruser($id, $nome_c, $data_n, $email, $telefone, $cpf, $senha, $emprestimo_l, $emprestimo_q, $emprestimo_d)
     {
-        $this->usermodel->criaruser($nome_c, $data_n, $email, $telefone, $cpf, $senha);
+        $this->usermodel->criaruser($id, $nome_c, $data_n, $email, $telefone, $cpf, $senha, $emprestimo_l, $emprestimo_q, $emprestimo_d);
     }
 
     public function listarusers()
@@ -28,9 +28,9 @@ class userController{
         include_once 'app/view/usuarios/listar.php';
     }
 
-    public function atualizaruser($id, $nome_c, $data_n, $email, $telefone, $cpf, $senha)
+    public function atualizaruser($id, $nome_c, $data_n, $email, $telefone, $cpf, $senha, $emprestimo_l, $emprestimo_q, $emprestimo_d)
     {
-        $this->usermodel->atualizaruser($id, $nome_c, $data_n, $email, $telefone, $cpf, $senha);
+        $this->usermodel->atualizaruser($id, $nome_c, $data_n, $email, $telefone, $cpf, $senha, $emprestimo_l, $emprestimo_q, $emprestimo_d);
     }
 
     public function deletaruser($id) {
@@ -47,9 +47,9 @@ class bookControler{
         $this->bookmodel = new bookmodel($pdo);
     }
 
-    public function criarbook($nome, $autor, $editora, $capa, $quantidade, $quantidade_e, $data_e)
+    public function criarbook($id, $nome, $autor, $editora, $capa, $quantidade)
     {
-        $this->bookmodel->criarbook($nome, $autor, $editora, $capa, $quantidade, $quantidade_e, $data_e);
+        $this->bookmodel->criarbook($id, $nome, $autor, $editora, $capa, $quantidade);
     }
 
     public function listarbook()
@@ -57,9 +57,15 @@ class bookControler{
         return $this->bookmodel->listarbook();
     }
 
-    public function atualizarbook($id, $nome, $autor, $editora, $capa, $quantidade, $quantidade_e, $data_e)
+    public function exibirListarbook()
     {
-        $this->bookmodel->atualizarbook($id, $nome, $autor, $editora, $capa, $quantidade, $quantidade_e, $data_e);
+        $books = $this->bookmodel->listarbook();
+        include_once 'app/view/livros/listar.php';
+    }
+
+    public function atualizarbook($id, $nome, $autor, $editora, $capa, $quantidade, $quantidade_e)
+    {
+        $this->bookmodel->atualizarbook($id, $nome, $autor, $editora, $capa, $quantidade, $quantidade_e);
     }
 
     public function deletarbook($id) {
