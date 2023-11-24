@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Nov-2023 às 19:26
+-- Tempo de geração: 24-Nov-2023 às 19:34
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -33,8 +33,7 @@ CREATE TABLE `livros` (
   `autor` varchar(255) NOT NULL,
   `editora` varchar(255) NOT NULL,
   `capa` varchar(255) NOT NULL,
-  `quantidade` int(11) NOT NULL,
-  `quantidade_d` int(11) NOT NULL
+  `quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -50,15 +49,18 @@ CREATE TABLE `usuario` (
   `email` varchar(255) NOT NULL,
   `telefone` varchar(11) NOT NULL,
   `cpf` varchar(255) NOT NULL,
-  `senha` varchar(255) NOT NULL
+  `senha` varchar(255) NOT NULL,
+  `emprestimo_l` varchar(255) NOT NULL,
+  `emprestimo_q` int(11) NOT NULL,
+  `emprestimo_d` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`id`, `nome_c`, `data_n`, `email`, `telefone`, `cpf`, `senha`) VALUES
-(1, 'vinicius', '1212-12-12', '12@12', '1212', '1212', '1212');
+INSERT INTO `usuario` (`id`, `nome_c`, `data_n`, `email`, `telefone`, `cpf`, `senha`, `emprestimo_l`, `emprestimo_q`, `emprestimo_d`) VALUES
+(4, 'veniceos', '2222-06-25', '14@14', '14141', '14141', '1212', '', 0, '0000-00-00');
 
 --
 -- Índices para tabelas despejadas
@@ -84,13 +86,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
