@@ -3,9 +3,7 @@ require_once 'app/config/db.php';
 require_once 'app/controller/controller.php';
 
 $bookmodel = new bookmodel($pdo);
-
 $books = new bookControler($pdo);
-
 $livros = $books->listarbook();
 
 if (isset($_POST['submit'])) {
@@ -45,10 +43,10 @@ if (isset($_POST['submit'])) {
 
 ?>
 
-<h2>Cadastrar Usuário</h2>
+<h2>Cadastrar Livro</h2>
 
 <form method="post">
-    <label for="nome">Nome completo:</label>
+    <label for="nome">Nome do livro:</label>
     <input type="text" name="nome" required>
 
     <label for="autor">autor:</label>
@@ -84,7 +82,7 @@ if (
     );
 }
 ?>
-<h2>Atualizar Usuário</h2>
+<h2>Atualizar Livro</h2>
 <form method="post">
     <select name="id">
         <?php foreach ($livros as $book) : ?>

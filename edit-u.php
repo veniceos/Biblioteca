@@ -3,7 +3,6 @@ require_once 'app/config/db.php';
 require_once 'app/controller/controller.php';
 
 $usermodel = new usermodel($pdo);
-
 $users = new userController($pdo);
 $usuario=$users->listarusers();
 
@@ -15,30 +14,25 @@ if (isset($_POST['submit'])) {
     $telefone = $_POST['telefone'];
     $cpf = $_POST['cpf'];
     $senha = $_POST['senha'];
-    $emprestimo_l = $_POST['emprestimo_l'];
-    $emprestimo_q = $_POST['emprestimo_q'];
-    $emprestimo_d = $_POST['emprestimo_d'];
 
 
-    $stmt = $pdo->prepare('SELECT COUNT(*) FROM usuario WHERE nome_c = ? AND data_n = ? AND email = ? AND telefone = ? AND cpf = ? AND senha = ? AND emprestimo_l = ? AND emprestimo_q = ? AND emprestimo_d = ?');
-    $stmt->execute([$nome_c, $data_n, $email, $telefone, $cpf, $senha, $emprestimo_l, $emprestimo_q, $emprestimo_d]);
+
+    $stmt = $pdo->prepare('SELECT COUNT(*) FROM usuario WHERE nome_c = ? AND data_n = ? AND email = ? AND telefone = ? AND cpf = ? AND senha = ?');
+    $stmt->execute([$nome_c, $data_n, $email, $telefone, $cpf, $senha]);
     $count = $stmt->fetchColumn();
 
     if ($count > 0) {
         $error = 'Esse perfil já foi cadastrado.';
     } else {
-        $stmt = $pdo->prepare('INSERT INTO usuario (nome_c, data_n, email, telefone, cpf, senha, emprestimo_l, emprestimo_q, emprestimo_d)
-                    VALUES (:nome_c, :data_n, :email, :telefone, :cpf, :senha, :emprestimo_l, :emprestimo_q, :emprestimo_d)');
+        $stmt = $pdo->prepare('INSERT INTO usuario (nome_c, data_n, email, telefone, cpf, senha)
+                    VALUES (:nome_c, :data_n, :email, :telefone, :cpf, :senha)');
         $stmt->execute([
             'nome_c' => $nome_c,
             'data_n' => $data_n,
             'email' => $email,
             'telefone' => $telefone,
             'cpf' => $cpf,
-            'senha' => $senha,
-            'emprestimo_l' => $emprestimo_l,
-            'emprestimo_q' => $emprestimo_q,
-            'emprestimo_d' => $emprestimo_d
+            'senha' => $senha
         ]);
     }
 
@@ -81,11 +75,7 @@ if (
     isset($_POST['atualizar_data_n']) &&
     isset($_POST['atualizar_email']) &&
     isset($_POST['atualizar_telefone']) &&
-    isset($_POST['atualizar_cpf']) &&
-    isset($_POST['atualizar_senha']) &&
-    isset($_POST['']) &&
-    isset($_POST['']) &&
-    isset($_POST['']) 
+    isset($_POST['atualizar_cpf']) 
 ) {
     $usermodel->atualizaruser(
         $_POST['id'],
@@ -94,10 +84,7 @@ if (
         $_POST['atualizar_email'],
         $_POST['atualizar_telefone'],
         $_POST['atualizar_cpf'],
-        $_POST['atualizar_senha'],
-        $_POST['emprestimo_l'],
-        $_POST['emprestimo_q'],
-        $_POST['emprestimo_d'],
+        $_POST['atualizar_senha']
     );
 }
 ?>

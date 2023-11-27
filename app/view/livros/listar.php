@@ -6,7 +6,7 @@
     <title>Dados</title>
 </head>
 <body>
-    <h1>Dados dos usuários</h1>
+    <h1>Dados dos livros</h1>
     <table>
         <tr>
             <th>Nome</th>
@@ -24,7 +24,6 @@
                 <td><?php echo $book['editora']; ?></td>
                 <td><?php echo $book['capa']; ?></td>
                 <td><?php echo $book['quantidade']; ?></td>
-                <td><a href="view/livros/deletar.php?id="<?php echo $book['id']; ?>>Deletar</a></td>
             </tr>
 
             <?php endforeach; ?>
