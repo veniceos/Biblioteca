@@ -26,7 +26,7 @@ public function atualizaruser($id, $nome_c, $data_n, $email, $telefone, $cpf, $s
     $sql = "UPDATE usuario SET nome_c = ?, data_n = ?, email = ?, telefone = ?, cpf = ?, senha = ?
     WHERE id = ?";
     $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([$nome_c, $data_n, $email, $telefone, $cpf, $senha]);
+    $stmt->execute([$nome_c, $data_n, $email, $telefone, $cpf, $senha, $id]);
 } 
 
 public function deletaruser($id) {
@@ -80,9 +80,7 @@ class EmprestimoModel {
 
     public function emprestar($nome_c, $email, $nome, $capa, $quantidade, $data_e, $data_d, $quantidade_e, $devolvido) {
         // Corrigindo a consulta SQL para um único comando INSERT
-        $sql = "INSERT INTO usuario (nome_c, email) VALUES (?, ?);
-                INSERT INTO livros (nome, capa, quantidade) VALUES (?, ?, ?);
-                INSERT INTO emprestimo (data_e, data_d, quantidade_e, devolvido) VALUES(?, ?, ?, ?)";
+        $sql = "";
 
         // Preparando a consulta
         $stmt = $this->pdo->prepare($sql);

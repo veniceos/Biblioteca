@@ -93,21 +93,12 @@ if (
     </select>
 
     <input type="text" name="atualizar_nome" placeholder="Nome">
-
-
     <input type="autor" name="atualizar_autor" placeholder="autor">
-
-
     <input type="text" name="atualizar_editora" placeholder="editora">
-
-
     <input type="text" name="atualizar_capa" placeholder="capa">
-
-
-    <input type="password" name="atualizar_quantidade" placeholder="quantidade">
+    <input type="number" name="atualizar_quantidade" placeholder="quantidade">
 
     <button type="submit">Atualizar</button>
-    
 </form>
 
 <?php
